@@ -23,6 +23,7 @@ struct trans_table_entry_t{
     float heuristic;
 };
 
+
 static const board_t ROW_MASK = 0xFFFFULL;
 static const board_t COL_MASK = 0x000F000F000F000FULL;
 
@@ -31,7 +32,8 @@ static inline void print_board(board_t board) {
     for(i=0; i<4; i++) {
         for(j=0; j<4; j++) {
             uint8_t powerVal = (board) & 0xf;
-            printf("%6u", (powerVal == 0) ? 0 : 1 << powerVal);
+            int i = (powerVal == 0) ? 0 : 1 << powerVal;
+            printf("%6u", i);
             board >>= 4;
         }
         printf("\n");
@@ -39,18 +41,40 @@ static inline void print_board(board_t board) {
     printf("\n");
 }
 
-static inline void get_game_board(board_t board, int move) {
+static inline void get_game_board(board_t board, int move, FILE * fp) {
+
     int i,j;
     for(i=0; i<4; i++) {
         for(j=0; j<4; j++) {
             uint8_t powerVal = (board) & 0xf;
-            printf("%u,", (powerVal == 0) ? 0 : 1 << powerVal);
+            //printf("%u,", (powerVal == 0) ? 0 : 1 << powerVal);
+            fprintf(fp, "%u,", (powerVal == 0) ? 0 : 1 << powerVal);
             board >>= 4;
         }
     }
 
-    printf("%u", move);
-    printf("\n");
+    fprintf(fp, "%u\n", move);
+    //printf("%u", move);
+    //printf("\n");
+}
+
+static inline void tostring(char str[], int num)
+{
+    int i, rem, len = 0, n;
+
+    n = num;
+    while (n != 0)
+    {
+        len++;
+        n /= 10;
+    }
+    for (i = 0; i < len; i++)
+    {
+        rem = num % 10;
+        num = num / 10;
+        str[len - (i + 1)] = rem + '0';
+    }
+    str[len] = '\0';
 }
 
 static inline board_t unpack_col(row_t row) {
