@@ -415,7 +415,7 @@ int find_best_move(board_t board) {
     float best = 0;
     int bestmove = -1;
 
-    print_board(board);
+    //print_board(board);
     printf("Current scores: heur %.0f, actual %.0f\n", score_heur_board(board), score_board(board));
 
     for(move=0; move<4; move++) {
@@ -435,7 +435,7 @@ int ask_for_move(board_t board) {
     char validstr[5];
     char *validpos = validstr;
 
-    print_board(board);
+    //print_board(board);
 
     for(move=0; move<4; move++) {
         if(execute_move(move, board) != board)
@@ -530,7 +530,7 @@ void play_game(get_move_func_t get_move) {
         board = insert_tile_rand(newboard, tile);
     }
 
-    print_board(board);
+    //print_board(board);
     fclose(fp);
     //printf("\nGame over. Your score is %.0f. The highest rank you achieved was %d.\n", score_board(board) - scorepenalty, get_max_rank(board));
 }
