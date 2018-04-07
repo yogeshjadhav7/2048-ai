@@ -416,7 +416,7 @@ int find_best_move(board_t board) {
     int bestmove = -1;
 
     //print_board(board);
-    printf("Current scores: heur %.0f, actual %.0f\n", score_heur_board(board), score_board(board));
+    //printf("Current scores: heur %.0f, actual %.0f\n", score_heur_board(board), score_board(board));
 
     for(move=0; move<4; move++) {
         float res = score_toplevel_move(board, move);
