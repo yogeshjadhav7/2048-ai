@@ -454,7 +454,7 @@ int ask_for_move(board_t board) {
             return -1;
 
         if(!strchr(validstr, toupper(movestr[0]))) {
-            printf("Invalid move.\n");
+            //printf("Invalid move.\n");
             continue;
         }
 
@@ -514,7 +514,7 @@ void play_game(get_move_func_t get_move) {
 
         newboard = execute_move(move, board);
         if(newboard == board) {
-            printf("Illegal move!\n");
+            //printf("Illegal move!\n");
             moveno--;
             continue;
         } else {
@@ -528,7 +528,7 @@ void play_game(get_move_func_t get_move) {
     }
 
     //print_board(board);
-    printf("\nGame over. Your score is %.0f. The highest rank you achieved was %d.\n", score_board(board) - scorepenalty, get_max_rank(board));
+    //printf("\nGame over. Your score is %.0f. The highest rank you achieved was %d.\n", score_board(board) - scorepenalty, get_max_rank(board));
 }
 
 int main() {
