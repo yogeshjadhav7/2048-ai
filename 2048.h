@@ -40,26 +40,15 @@ static inline void print_board(board_t board) {
 }
 
 static inline void get_game_board(board_t board, int move) {
-    char state[100];
-    strcpy(state, "");
     int i,j;
     for(i=0; i<4; i++) {
         for(j=0; j<4; j++) {
             uint8_t powerVal = (board) & 0xf;
-            powerVal = (powerVal == 0) ? 0 : 1 << powerVal;
-            int i = int(powerVal);
-
-            char temp[10];
-            sprintf(temp, "%d", i);
-
-            strcpy(state, temp);
-            printf("%u,", i);
+            printf("%u,", (powerVal == 0) ? 0 : 1 << powerVal);
             board >>= 4;
         }
-        //printf("\n");
     }
 
-    //printf("state: %s", state);
     printf("%u", move);
     printf("\n");
 }
